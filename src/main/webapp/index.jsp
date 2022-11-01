@@ -7,10 +7,5 @@
 <h2>Hello World!</h2>
 
 <a href="blog/createPost.jsp">Create new post</a>
-<%
-
-PostDAO.salvar();
-
-%>
 </body>
 </html>

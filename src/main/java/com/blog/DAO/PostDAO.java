@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostDAO {
-    public static String salvar(){
+    public static String save(Post p){
         Connection con = Connector.connect();
         if(con != null){
             String sql = "INSERT INTO posts (user_id, title, body)" +
                     "values(?,?,?)";
             try {
                 PreparedStatement ps = con.prepareStatement(sql);
-                ps.setInt(1, 1);
-                ps.setString(2,"Título teste");
-                ps.setString(3,"Corpo teste");
+                ps.setInt(1, p.getUserId());
+                ps.setString(2, p.getTitle());
+                ps.setString(3,p.getBody());
                 ps.execute();
             } catch (SQLException e) {
                 return  "Erro: " + e.getMessage();
