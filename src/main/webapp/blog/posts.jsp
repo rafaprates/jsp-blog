@@ -18,6 +18,22 @@
             out.write("<h2>" + p.getTitle() + "</h2>");
             out.write("<p>" + p.getBody() + "</p>");
         %>
+        <hr>
+
+        <h4>Comentários</h4>
+
+        <hr>
+        <h4>Deixar um comentário</h4>
+        <form action="/blog/comentar.jsp" method="POST">
+            <div class="form-group">
+                <textarea name="comment-body" id="comment-body" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">Comentar</button>
+            </div>
+        </form>
+
     </div>
     </body>
 </html>
