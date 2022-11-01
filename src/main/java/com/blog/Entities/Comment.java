@@ -5,15 +5,17 @@ public class Comment {
     private int userId;
     private int postId;
     private String body;
+    private int approved;
 
     public Comment() {
     }
 
-    public Comment(int commentId, int userId, int postId, String body) {
+    public Comment(int commentId, int userId, int postId, String body, int approved) {
         this.commentId = commentId;
         this.userId = userId;
         this.postId = postId;
         this.body = body;
+        this.approved = approved;
     }
 
     public int getCommentId() {
@@ -46,5 +48,17 @@ public class Comment {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public boolean isApproved() {
+        if (approved == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void setApproved(int approved) {
+        this.approved = approved;
     }
 }

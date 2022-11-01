@@ -11,6 +11,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDAO {
+
+    public static List<Comment> listAll() {
+        List<Comment> comments = new ArrayList<Comment>();
+        Connection con = Connector.connect();
+        try {
+            String sql = "SELECT * FROM comments;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Comment c = new Comment();
+                c.setCommentId(rs.getInt("comment_id"));
+                c.setPostId(rs.getInt("post_id"));
+                c.setUserId(rs.getInt("user_id"));
+                c.setBody(rs.getString("body"));
+                c.setApproved(rs.getInt("approved"));
+                comments.add(c);
+            }
+        } catch (SQLException e) {
+            return comments;
+        }
+        return comments;
+    }
+
+    public static List<Comment> listAllUnapproved() {
+        List<Comment> unapprovedComments = new ArrayList<Comment>();
+        Connection con = Connector.connect();
+        try {
+            String sql = "SELECT * FROM comments " +
+                         "WHERE approved = 0;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Comment c = new Comment();
+                c.setCommentId(rs.getInt("comment_id"));
+                c.setPostId(rs.getInt("post_id"));
+                c.setUserId(rs.getInt("user_id"));
+                c.setBody(rs.getString("body"));
+                c.setApproved(rs.getInt("approved"));
+                unapprovedComments.add(c);
+            }
+        } catch (SQLException e) {
+            return unapprovedComments;
+        }
+        return unapprovedComments;
+    }
+
+    public static void approveComment(String commentId) {
+        Connection con = Connector.connect();
+        try {
+            String sql = "UPDATE comments SET approved = 1 " +
+                         "WHERE comment_id = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, commentId);
+            ps.execute();
+        } catch (SQLException e) {
+            return;
+        }
+    }
+
+
     public static List<Comment> listAllFromPost(String postId) {
         List<Comment> comments = new ArrayList<Comment>();
         Connection con = Connector.connect();
@@ -22,6 +82,8 @@ public class CommentDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Comment c = new Comment();
+                c.setUserId(rs.getInt("user_id"));
+                c.setApproved(rs.getInt("approved"));
                 c.setBody(rs.getString("body"));
                 comments.add(c);
             }
