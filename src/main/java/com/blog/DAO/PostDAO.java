@@ -29,4 +29,26 @@ public class PostDAO {
         }
         return "erro de conexão";
     }
+
+    public static List<Post> listAll() {
+        List<Post> posts = new ArrayList<Post>();
+        Connection con = Connector.connect();
+        try {
+            String sql = "SELECT * FROM posts " +
+                         "ORDER BY created_at DESC " +
+                         "LIMIT 10;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Post p = new Post();
+                p.setUserId(rs.getInt("user_id"));
+                p.setTitle(rs.getString("title"));
+                p.setBody(rs.getString("body"));
+                posts.add(p);
+            }
+        } catch (SQLException e) {
+            return posts;
+        }
+        return posts;
+    }
 }
