@@ -19,7 +19,7 @@
             out.write("<strong>" + p.getTitle() + "</strong> por usuário: " + p.getUserId());
             out.write("<br>");
             out.write(p.getBody().substring(0, 15).trim() + "...");
-            String linkToPost = "href=blog/posts?id=" + p.getId();
+            String linkToPost = "blog/posts.jsp?id=" + p.getId();
             out.write(" <a href=" + linkToPost + ">Ler mais</a>");
             out.write("<br>");
             out.write("<hr>");
