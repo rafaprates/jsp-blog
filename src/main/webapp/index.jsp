@@ -16,9 +16,11 @@
         <%
         List<Post> posts = PostDAO.listAll();
         for (Post p : posts) {
-            out.write("Título: " + p.getTitle() + " por usuário: " + p.getUserId());
+            out.write("<strong>" + p.getTitle() + "</strong> por usuário: " + p.getUserId());
             out.write("<br>");
-            out.write("Corpo: " + p.getBody());
+            out.write(p.getBody().substring(0, 15).trim() + "...");
+            String linkToPost = "href=blog/posts?id=" + p.getId();
+            out.write(" <a href=" + linkToPost + ">Ler mais</a>");
             out.write("<br>");
             out.write("<hr>");
         }
