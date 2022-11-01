@@ -1,4 +1,6 @@
 com\blog\Entities\Post.class
 com\blog\DAO\PostDAO.class
 com\blog\foo.class
+com\blog\Entities\Comment.class
 com\blog\Utils\Connector.class
+com\blog\DAO\CommentDAO.class

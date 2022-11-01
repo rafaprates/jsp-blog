@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="com.blog.Entities.Post" %>
+<%@page import="com.blog.Entities.Comment" %>
 <%@page import="com.blog.DAO.PostDAO" %>
+<%@page import="com.blog.DAO.CommentDAO" %>
+<%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +24,13 @@
         <hr>
 
         <h4>Comentários</h4>
+        <%
+            List<Comment> comments = CommentDAO.listAllFromPost(request.getParameter("id"));
+            for (Comment c : comments) {
+                out.write("<p>" + c.getUserId() + "</p>");
+                out.write("<p>" + c.getBody() + "</p>");
+            }
+        %>
 
         <hr>
         <h4>Deixar um comentário</h4>
