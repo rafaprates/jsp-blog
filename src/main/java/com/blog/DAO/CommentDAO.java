@@ -57,6 +57,30 @@ public class CommentDAO {
         return unapprovedComments;
     }
 
+    public static List<Comment> listAllApprovedByPostId(String postId) {
+        List<Comment> approvedComments = new ArrayList<Comment>();
+        Connection con = Connector.connect();
+        try {
+            String sql = "SELECT * FROM comments " +
+                    "WHERE approved = ? AND post_id = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, 1);
+            ps.setString(2, postId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Comment c = new Comment();
+                c.setCommentId(rs.getInt("comment_id"));
+                c.setPostId(rs.getInt("post_id"));
+                c.setUserId(rs.getInt("user_id"));
+                c.setBody(rs.getString("body"));
+                c.setApproved(rs.getInt("approved"));
+                approvedComments.add(c);
+            }
+        } catch (SQLException e) {
+            return approvedComments;
+        }
+        return approvedComments;
+    }
     public static void approveComment(String commentId) {
         Connection con = Connector.connect();
         try {

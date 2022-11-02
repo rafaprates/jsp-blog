@@ -25,7 +25,7 @@
 
         <h4>Comentários</h4>
         <%
-            List<Comment> comments = CommentDAO.listAllFromPost(request.getParameter("id"));
+            List<Comment> comments = CommentDAO.listAllApprovedByPostId(request.getParameter("id"));
             for (Comment c : comments) {
                 out.write("<p>" + c.getUserId() + "</p>");
                 out.write("<p>" + c.getBody() + "</p>");
