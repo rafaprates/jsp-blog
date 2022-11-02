@@ -9,7 +9,10 @@
 
     int userIdParsed = Integer.valueOf(userId);
 
-    Post p = new Post(title, body, userIdParsed);
+    Post p = new Post();
+    p.setTitle(title);
+    p.setBody(body);
+    p.setUserId(userIdParsed);
     PostDAO.save(p);
 
     response.sendRedirect("/index.jsp");

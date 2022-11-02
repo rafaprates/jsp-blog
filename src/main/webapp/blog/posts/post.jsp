@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>Cadastro</title>
+        <title>Blog</title>
         </head>
     <body>
     <div class="container">
@@ -23,24 +23,33 @@
         <form action="update.jsp" method="GET">
             <input type="text" name="id" value="<%=postId%>" style="display:none" readonly />
             <button class="btn btn-success">Editar</button>
-        </form>"
+        </form>
 
+        <div class='card mb-3'>
         <%
             Post p = PostDAO.getById(postId);
-            out.write("<h2>" + p.getTitle() + "</h2>");
-            out.write("<p>" + p.getBody() + "</p>");
+            out.write("<div class='card-header'><h2>" + p.getTitle().toUpperCase() + "<h2></div>");
+            out.write("<div class='card-body'>" + p.getBody() + "</div>");
         %>
+        </div>
 
-        <hr>
+        <div class='card mb-3'>
+            <div class='card-header'><h5>Comentários<h5></div>
+            <div class='card-body'>
+                <%
+                    List<Comment> comments = CommentDAO.listAllApprovedByPostId(postId);
+                    if (comments.size() < 1) {
+                        out.write("<p class='card-text'>Ainda não há comentários. Seja o primeiro a comentar.</p>");
+                    } else {
+                        for (Comment c : comments) {
+                            out.write("<p class='card-text'>" + c.getBody() + "</p>");
+                            out.write("<p class='card-text'>" + c.getUserId() + "</p>");
+                        }
+                    }
+                %>
+            </div>
+        </div>
 
-        <h4>Comentários</h4>
-        <%
-            List<Comment> comments = CommentDAO.listAllApprovedByPostId(postId);
-            for (Comment c : comments) {
-                out.write("<p>" + c.getUserId() + "</p>");
-                out.write("<p>" + c.getBody() + "</p>");
-            }
-        %>
 
         <hr>
 

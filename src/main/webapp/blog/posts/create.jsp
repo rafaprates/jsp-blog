@@ -13,7 +13,7 @@
         </head>
     <body>
     <div class="container">
-        <form action="savePost.jsp" method="POST">
+        <form action="save.jsp" method="POST">
             <div class="form-group mt-5">
                 <label for="title">Título</label>
                 <input

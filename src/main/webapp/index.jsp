@@ -4,9 +4,14 @@
 <%@ page import="java.util.List" %>
 
 <html>
-<head>
-    <title>Blog</title>
-</head>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Blog</title>
+        </head>
 <body>
     <h2>Hello World!</h2>
 
@@ -18,18 +23,24 @@
         <%
         List<Post> posts = PostDAO.listAll();
         for (Post p : posts) {
-            int maxPostLength = p.getBody().length();
-            out.write("<strong>" + p.getTitle() + "</strong> por usuário: " + p.getUserId());
-            out.write("<br>");
-            if (maxPostLength < 15) {
-                out.write(p.getBody());
-            } else {
-                out.write(p.getBody().substring(0, 15).trim() + "...");
-            }
             String linkToPost = "blog/posts/post.jsp?id=" + p.getId();
-            out.write(" <a href=" + linkToPost + ">Ler mais</a>");
-            out.write("<br>");
-            out.write("<hr>");
+            int maxPostLength = p.getBody().length();
+
+            String postPreview;
+            if (maxPostLength < 15) {
+                postPreview = p.getBody();
+            } else {
+                postPreview = p.getBody().substring(0, 15).trim() + "...";
+            }
+
+            out.write("<div class='card mb-3'>" +
+                        "<div class='card-body'>" +
+                            "<h5 class='card-title mb-2'>" + p.getTitle().toUpperCase() + "</h5>" +
+                            "<p class='card-text'>" + postPreview + "</p>" +
+                            "<a class='card-link' href=" + linkToPost + ">Ler mais</a>" +
+                        "</div>" +
+                    "</div>"
+                    );
         }
         %>
     </div>
