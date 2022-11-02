@@ -4,20 +4,28 @@
 <%@ page import="java.util.List" %>
 
 <html>
+<head>
+    <title>Blog</title>
+</head>
 <body>
-<h2>Hello World!</h2>
+    <h2>Hello World!</h2>
 
-<a href="blog/posts/create.jsp">Create new post</a>
+    <a href="blog/posts/create.jsp">Create new post</a>
 
-<hr>
+    <hr>
 
     <div class="container">
         <%
         List<Post> posts = PostDAO.listAll();
         for (Post p : posts) {
+            int maxPostLength = p.getBody().length();
             out.write("<strong>" + p.getTitle() + "</strong> por usuário: " + p.getUserId());
             out.write("<br>");
-            out.write(p.getBody().substring(0, 15).trim() + "...");
+            if (maxPostLength < 15) {
+                out.write(p.getBody());
+            } else {
+                out.write(p.getBody().substring(0, 15).trim() + "...");
+            }
             String linkToPost = "blog/posts/post.jsp?id=" + p.getId();
             out.write(" <a href=" + linkToPost + ">Ler mais</a>");
             out.write("<br>");

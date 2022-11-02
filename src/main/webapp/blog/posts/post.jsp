@@ -17,15 +17,25 @@
     <body>
     <div class="container">
         <%
-            Post p = PostDAO.getById(request.getParameter("id"));
+            String postId = request.getParameter("id");
+        %>
+
+        <form action="update.jsp" method="GET">
+            <input type="text" name="id" value="<%=postId%>" style="display:none" readonly />
+            <button class="btn btn-success">Editar</button>
+        </form>"
+
+        <%
+            Post p = PostDAO.getById(postId);
             out.write("<h2>" + p.getTitle() + "</h2>");
             out.write("<p>" + p.getBody() + "</p>");
         %>
+
         <hr>
 
         <h4>Comentários</h4>
         <%
-            List<Comment> comments = CommentDAO.listAllApprovedByPostId(request.getParameter("id"));
+            List<Comment> comments = CommentDAO.listAllApprovedByPostId(postId);
             for (Comment c : comments) {
                 out.write("<p>" + c.getUserId() + "</p>");
                 out.write("<p>" + c.getBody() + "</p>");
@@ -33,6 +43,7 @@
         %>
 
         <hr>
+
         <h4>Deixar um comentário</h4>
         <form action="/blog/comentar.jsp" method="POST">
             <div class="form-group">
@@ -43,7 +54,6 @@
                 <button class="btn btn-primary">Comentar</button>
             </div>
         </form>
-
     </div>
     </body>
 </html>

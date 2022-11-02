@@ -72,4 +72,32 @@ public class PostDAO {
         }
         return p;
     }
+
+    public static void updatePost(Post p) {
+        Connection con = Connector.connect();
+        try {
+            String sql = "UPDATE posts SET title = ?, body = ? " +
+                         "WHERE post_id = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, p.getTitle());
+            ps.setString(2, p.getBody());
+            ps.setInt(3, p.getId());
+            ps.execute();
+        } catch (SQLException e) {
+            return;
+        }
+    }
+
+    public static String delete(String postId) {
+        Connection con = Connector.connect();
+        try {
+            String sql = "DELETE FROM posts WHERE post_id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, postId);
+            ps.execute();
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+        return "Post com id " + postId + "deletado com sucesso.";
+    }
 }
