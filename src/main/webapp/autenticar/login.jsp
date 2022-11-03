@@ -72,7 +72,8 @@
         </nav>
 
             <section class="row justify-content-center">
-                <div class="register-box">
+                <h2 class="mb-3 mt-5 user-only-element">Você já está logado. <a href="/autenticar/endSession.jsp">Sair</a></h2>
+                <div class="register-box visitor-only-element">
                     <h2 class="mb-3 mt-5">Entre ou registre-se, é de graça!</h2>
 
                     <form action="/autenticar/login.jsp" method="POST">
