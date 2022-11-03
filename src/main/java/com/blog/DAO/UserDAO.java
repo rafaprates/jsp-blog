@@ -11,7 +11,14 @@ import java.sql.SQLException;
 public class UserDAO {
     public static String save(User u){
         Connection con = Connector.connect();
+
+
         if (con != null){
+            User existingUser = getByUsername(u.getUsername());
+            if (existingUser.getUsername() != null) {
+                return "userAlreadyExists";
+            }
+
             String sql = "INSERT INTO users (username, passcode) " +
                          "VALUES (?,?)";
             try {

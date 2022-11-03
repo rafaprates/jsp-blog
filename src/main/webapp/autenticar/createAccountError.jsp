@@ -21,27 +21,6 @@
         </style>
         </head>
     <body>
-
-    <%
-        if (request.getMethod() == "POST") {
-            String username = request.getParameter("username");
-            String passcode = request.getParameter("passcode");
-
-            User u = new User();
-            u.setUsername(username);
-            u.setPasscode(passcode);
-
-            String feedback = UserDAO.save(u);
-
-            if (feedback.equals("userAlreadyExists")) {
-                response.sendRedirect("/autenticar/createAccountError.jsp");
-            } else {
-                response.sendRedirect("/index.jsp");
-            }
-
-        }
-    %>
-
     <div class="container">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
@@ -70,33 +49,8 @@
 
         <section class="row justify-content-center">
             <div class="register-box">
-                <h2 class="mb-3 mt-5">Bem-vindo(a), registre-se em nosso Blog</h2>
-
-                <form action="/autenticar/registrar.jsp" method="POST">
-                    <div class="form-group">
-                        <label for="username">Usuário</label>
-                        <input
-                        class="form-control"
-                        type="text"
-                        name="username"
-                        id="username"
-                        required
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="passcode">Senha</label>
-                        <input
-                        class="form-control"
-                        type="password"
-                        name="passcode"
-                        id="passcode"
-                        required
-                        />
-                    </div>
-
-                    <button class="btn btn-primary">Registrar-se</button>
-                </form>
+                <h2 class="mb-3 mt-5">Usuário já existe. Por favor, registre-se com outro nome de usuário.</h2>
+                <p><a href="/autenticar/registrar.jsp">Voltar</a></p>
             </div>
         </section>
     </div>

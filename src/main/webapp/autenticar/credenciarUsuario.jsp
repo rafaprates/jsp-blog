@@ -5,11 +5,9 @@
     String username = request.getAttribute("username").toString();
     String privilege = request.getAttribute("privilege").toString();
     String userId = request.getAttribute("userId").toString();
-    out.write("<p id='username'>" + username + "</p>");
-    out.write("<p id='privilege'>" + privilege + "</p>");
-    out.write("<p id='userId'>" + userId + "</p>");
-    out.write(username);
-    out.write(privilege);
+    out.write("<p style='display:none' id='username'>" + username + "</p>");
+    out.write("<p style='display:none 'id='privilege'>" + privilege + "</p>");
+    out.write("<p style='display:none' id='userId'>" + userId + "</p>");
 %>
 
 <script>
