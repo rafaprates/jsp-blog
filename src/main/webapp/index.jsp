@@ -13,13 +13,25 @@
         <title>Blog</title>
         </head>
 <body>
-    <h2>Hello World!</h2>
-
     <a href="blog/posts/create.jsp">Create new post</a>
 
-    <hr>
-
     <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.jsp">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Administrar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/autenticar/login.jsp">Entrar</a>
+              </li>
+            </ul>
+        </nav>
+
+
         <%
         List<Post> posts = PostDAO.listAll();
         for (Post p : posts) {

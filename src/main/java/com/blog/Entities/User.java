@@ -4,6 +4,7 @@ public class User {
     private int userId;
     private String username;
     private String passcode;
+    private int privilege;
 
     public User() {
     }
@@ -30,5 +31,13 @@ public class User {
 
     public void setPasscode(String passcode) {
         this.passcode = passcode;
+    }
+
+    public int getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(int privilege) {
+        this.privilege = privilege;
     }
 }
