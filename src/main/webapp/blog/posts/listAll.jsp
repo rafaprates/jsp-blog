@@ -29,7 +29,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/autenticar/registrar.jsp">Cadastrar-se</a>
               </li>
-              <li class="nav-item dropdown admin-element">
+              <li class="nav-item dropdown admin-element active">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Administrar
                   </a>
@@ -42,9 +42,10 @@
             </ul>
         </nav>
 
+        <h3 class="mb-3">Central de controle de postagem</h3>
 
         <%
-        List<Post> posts = PostDAO.listAllLimitBy(10);
+        List<Post> posts = PostDAO.listAll();
         for (Post p : posts) {
             String linkToPost = "/blog/posts/post.jsp?id=" + p.getId();
             int maxPostLength = p.getBody().length();
@@ -56,11 +57,16 @@
                 postPreview = p.getBody().substring(0, 15).trim() + "...";
             }
 
+
+
             out.write("<div class='card mb-3'>" +
                         "<div class='card-body'>" +
                             "<h5 class='card-title mb-2'>" + p.getTitle().toUpperCase() + "</h5>" +
                             "<p class='card-text'>" + postPreview + "</p>" +
-                            "<a class='card-link' href=" + linkToPost + ">Ler mais</a>" +
+                                "<form action='update.jsp' method='GET' class='admin-element'>" +
+                                    "<input type='hidden' name='id' value='" + p.getId() + "' readonly />" +
+                                    "<button class='btn btn-warning'>Editar</button>" +
+                                "</form>" +
                         "</div>" +
                     "</div>"
                     );

@@ -56,7 +56,7 @@
                 <h2><%=p.getTitle().toUpperCase()%><h2>
                 <form action="update.jsp" method="GET" class="admin-element">
                     <input type="hidden" name="id" value="<%=postId%>" readonly />
-                    <button class="btn btn-success">Editar</button>
+                    <button class="btn btn-warning">Editar</button>
                 </form>
             </div>
             <div class='card-body'>

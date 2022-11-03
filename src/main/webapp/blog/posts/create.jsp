@@ -56,8 +56,7 @@
 
             <div class="form-group">
                 <label for="body">Corpo</label>
-                <textarea class="form-control" name="body" id="body" required>
-                </textarea>
+                <textarea class="form-control" name="body" id="body" required></textarea>
             </div>
 
             <div class="form-group">
