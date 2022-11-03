@@ -52,7 +52,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/blog/posts/create.jsp">Criar nova postagem</a>
                     <a class="dropdown-item" href="/blog/posts/listAll.jsp">Listar/editar todas as postagem</a>
-                    <a class="dropdown-item" href="/blog/comments.jsp">Aprovar comentários</a>
+                    <a class="dropdown-item" href="/blog/comments/comments.jsp">Aprovar comentários</a>
                   </div>
               </li>
             </ul>

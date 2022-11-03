@@ -5,7 +5,7 @@
 <%
     if (request.getMethod() == "POST") {
         String commentId = request.getParameter("id");
-        CommentDAO.approveComment(commentId);
-        response.sendRedirect("/blog/comments.jsp");
+        CommentDAO.delete(commentId);
+        response.sendRedirect("/blog/comments/comments.jsp");
     }
 %>

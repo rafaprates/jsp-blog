@@ -59,8 +59,8 @@
         <%
             List<Comment> comments = CommentDAO.listAllUnapproved();
             for (Comment c : comments) {
-            String approveCommentUrl = "approveComment.jsp?id=" + String.valueOf(c.getCommentId());
-            String deleteCommentUrl = "deleteComment.jsp?id=" + String.valueOf(c.getCommentId());
+            String approveCommentUrl = "/blog/comments/approve.jsp?id=" + String.valueOf(c.getCommentId());
+            String deleteCommentUrl = "/blog/comments/delete.jsp?id=" + String.valueOf(c.getCommentId());
             out.write("<tr>");
                 out.write("<td>" + c.getBody() + "</td>");
                 out.write("<td>" + String.valueOf(c.getUserId()) + "</td>");
