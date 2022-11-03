@@ -24,9 +24,15 @@ VALUES
 INSERT INTO comments (post_id, user_id, body, approved)
 VALUES
 (1, 1, "Adorei", 1),
+(1, 1, "Muito bom", 1),
+(1, 1, "Me ajudou bastante", 1),
 (2, 1, "Adorei", 1),
+(2, 1, "Não sabia disso", 1),
 (8, 1, "Adorei", 1),
-(9, 1, "Adorei", 1);
+(8, 1, "Bastante interessante. Obrigado por compartilhar.", 1),
+(9, 1, "Adorei", 1),
+(9, 1, "Muito legal!!!!", 1);
+
 
 
 INSERT INTO comments (post_id, user_id, body)
