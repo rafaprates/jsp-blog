@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="from-group d-flex gap-3">
-                    <form action="/blog/posts/update.jsp" method="DELETE">
+                    <form action="/blog/posts/update.jsp" method="POST">
                         <input type='text' name='id' value='<%=postId%>' style='display:none' readonly/>
                         <button class="btn btn-warning mr-3">Modificar Post</button>
                     </form>

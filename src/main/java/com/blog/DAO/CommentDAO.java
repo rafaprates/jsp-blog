@@ -12,6 +12,25 @@ import java.util.List;
 
 public class CommentDAO {
 
+    public static String save(Comment c){
+        Connection con = Connector.connect();
+        if (con != null){
+            String sql = "INSERT INTO comments (post_id, user_id, body) " +
+                         "VALUES (?,?,?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, c.getPostId());
+                ps.setInt(2, c.getUserId());
+                ps.setString(3, c.getBody());
+                ps.execute();
+            } catch (SQLException e) {
+                return  "Erro: " + e.getMessage();
+            }
+            return "Registro inserido com sucesso";
+        }
+        return "erro de conexão";
+    }
+
     public static List<Comment> listAll() {
         List<Comment> comments = new ArrayList<Comment>();
         Connection con = Connector.connect();
