@@ -60,12 +60,16 @@
             List<Comment> comments = CommentDAO.listAllUnapproved();
             for (Comment c : comments) {
             String approveCommentUrl = "approveComment.jsp?id=" + String.valueOf(c.getCommentId());
+            String deleteCommentUrl = "deleteComment.jsp?id=" + String.valueOf(c.getCommentId());
             out.write("<tr>");
                 out.write("<td>" + c.getBody() + "</td>");
                 out.write("<td>" + String.valueOf(c.getUserId()) + "</td>");
-                out.write("<td>" +
-                          "<form action='" + approveCommentUrl + "' method='POST'>" +
+                out.write("<td class='d-flex'>" +
+                          "<form class = 'mr-2' action='" + approveCommentUrl + "' method='POST'>" +
                           "<button class='btn btn-success'>Aprovar</button>" +
+                          "</form>" +
+                          "<form action='" + deleteCommentUrl + "' method='POST'>" +
+                          "<button class='btn btn-danger'>Deletar</button>" +
                           "</form>" +
                           "</td>");
             out.write("</tr>");

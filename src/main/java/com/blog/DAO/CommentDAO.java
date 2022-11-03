@@ -135,4 +135,17 @@ public class CommentDAO {
         }
         return comments;
     }
+
+    public static String delete(String commentId) {
+        Connection con = Connector.connect();
+        try {
+            String sql = "DELETE FROM comments WHERE comment_id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, commentId);
+            ps.execute();
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+        return "Comment com id " + commentId + " deletado com sucesso.";
+    }
 }
